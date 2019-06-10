@@ -23,7 +23,7 @@ func main() {
 
   reader := bufio.NewReader(os.Stdin)
   queueName := "ExampleQueue"
-  messageCount := 0
+  count := 0
 
   println("Creating queue...")
 
@@ -49,7 +49,7 @@ func main() {
   println("type and send messages to SQS by hitting enter (type 'q' to quit):")
 
   for {
-    messageCount += 1
+    count += 1
 
     fmt.Print("> ")
     text, _ := reader.ReadString('\n')
@@ -68,7 +68,7 @@ func main() {
     }
   }
 
-  for ; messageCount != 0; messageCount-- {
+  for ; count != 0; count-- {
     messages, err := service.ReceiveMessage(&sqs.ReceiveMessageInput{
       QueueUrl: queue.QueueUrl,
     })
