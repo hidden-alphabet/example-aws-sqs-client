@@ -12,11 +12,9 @@ import (
 )
 
 func main() {
-  config := &aws.Config{
+  session, err := session.NewSession(&aws.Config{
     Region: aws.String("us-west-2"),
-  }
-
-  session, err := session.NewSession(config)
+  })
   if err != nil {
     log.Fatal(err)
   }
